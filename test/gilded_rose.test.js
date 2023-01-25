@@ -110,3 +110,50 @@ describe("add Aged Brie item and run updateQuality", () => {
     expect(items[0].quality).toBe(50);
   });
 });
+describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
+  it("no change when sellIn greater than 0", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", 1, 10),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(1);
+    expect(items[0].quality).toBe(10);
+  });
+  it("no change when sellIn is 0", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", 0, 10),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(10);
+  });
+  it("no change when sellIn is less than 0", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", -1, 10),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(10);
+  });
+  it("no change when quality is greater than 50", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", -1, 60),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(60);
+  });
+  it("no change when quality is less than 50", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", -1, -60),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(-60);
+  });
+});
