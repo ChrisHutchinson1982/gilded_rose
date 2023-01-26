@@ -12,15 +12,11 @@ class Shop {
   }
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
-      if (this.items[i].quality > 0) {
-        if (this.items[i].sellIn > 0) {
-          this.items[i].quality -= 1;
-        } else if (this.items[i].sellIn <= 0) {
-          this.items[i].quality -= 2;
-        }
-      }
+      const item = this.items[i];
 
-      this.items[i].sellIn -= 1;
+      this.updateItemQuality(item);
+
+      item.sellIn -= 1;
 
       //   if (
       //     this.items[i].name != "Aged Brie" &&
@@ -76,6 +72,16 @@ class Shop {
     }
 
     return this.items;
+  }
+
+  updateItemQuality(item) {
+    if (item.quality > 0) {
+      if (item.sellIn > 0) {
+        item.quality -= 1;
+      } else if (item.sellIn <= 0) {
+        item.quality -= 2;
+      }
+    }
   }
 }
 
