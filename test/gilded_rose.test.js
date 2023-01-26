@@ -44,7 +44,7 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(2);
   });
-  xit("reduces items sellIn by 1 and fixes Quality to 0 when sellIn is less", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when sellIn is less", () => {
     const gildedRose = new Shop([new Item("foo", -1, 1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
