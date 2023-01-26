@@ -43,11 +43,18 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
   });
-  it("reduces items sellIn by 1 and no change to Quality when quality is less than 0", () => {
+  it("reduces items sellIn by 1 when -1 and no change to Quality when quality is less than 0", () => {
     const gildedRose = new Shop([new Item("foo", -1, -1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
     expect(items[0].sellIn).toBe(-2);
+    expect(items[0].quality).toBe(-1);
+  });
+  it("reduces items sellIn by 1 when 1 and no change to Quality when quality is less than 0", () => {
+    const gildedRose = new Shop([new Item("foo", 1, -1)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("foo");
+    expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(-1);
   });
 });
@@ -196,7 +203,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(0);
   });
-  it("reduces items sellIn value by 1 and increases quality when sellIn value greater than 10", () => {
+  it("reduces items sellIn value by 1 and increases quality by 1 when sellIn value greater than 10", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 12, 0),
     ]);
@@ -205,7 +212,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(11);
     expect(items[0].quality).toBe(1);
   });
-  it("reduces items sellIn value by 1 and increases quality when sellIn is 11", () => {
+  it("reduces items sellIn value by 1 and increases quality by 1 when sellIn is 11", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0),
     ]);
@@ -213,5 +220,122 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
     expect(items[0].sellIn).toBe(10);
     expect(items[0].quality).toBe(1);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 2 when sellIn is 10", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(9);
+    expect(items[0].quality).toBe(2);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 2 when sellIn is 6", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 6, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(5);
+    expect(items[0].quality).toBe(2);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 3 when sellIn is 5", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(4);
+    expect(items[0].quality).toBe(3);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 3 when sellIn is 1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(3);
+  });
+  it("reduces items sellIn value by 1 and changes quality to 0 when sellIn is 0", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(0);
+  });
+  it("reduces items sellIn value by 1 and changes quality to 0 when sellIn is -1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", -1, 10),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(-2);
+    expect(items[0].quality).toBe(0);
+  });
+  it("reduces items sellIn value by 1 and changes quality to 0 when sellIn is -1 and quality is -1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", -1, -1),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(-2);
+    expect(items[0].quality).toBe(0);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 1 when negative and sellIn value greater than 10", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 11, -2),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(10);
+    expect(items[0].quality).toBe(-1);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 2 when negative and sellIn is 6", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 6, -3),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(5);
+    expect(items[0].quality).toBe(-1);
+  });
+  it("reduces items sellIn value by 1 and increases quality by 3 when negative and sellIn is 1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, -4),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(-1);
+  });
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 11", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(10);
+    expect(items[0].quality).toBe(50);
+  });
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 6", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 6, 50),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(5);
+    expect(items[0].quality).toBe(50);
+  });
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 50),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(50);
   });
 });

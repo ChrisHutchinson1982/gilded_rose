@@ -40,6 +40,7 @@ Standard item when updateQuality run once
 | [["foo", 0, 4]]   | [["foo", -1, 2]] |
 | [["foo", -1, 1]]  | [["foo", -2, 0]] |
 | [["foo", -1, -1]] | ["foo", -2, -1]] |
+| [["foo", 1, -1]]  | ["foo", 0, -1]]  |
 
 Aged Brie item when updateQuality run once
 
@@ -72,8 +73,21 @@ Backstage passes to a TAFKAL80ETC concert item when updateQuality run once
 
 - “Backstage passes”, like aged brie, increases in Quality as it’s `SellIn` value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
 
-| Input                                                 | Output                                                 |
-| ----------------------------------------------------- | ------------------------------------------------------ |
-| [["Backstage passes to a TAFKAL80ETC concert", 0, 0]  | [["Backstage passes to a TAFKAL80ETC concert", -1, 0]] |
-| [["Backstage passes to a TAFKAL80ETC concert", 12, 0] | [["Backstage passes to a TAFKAL80ETC concert", 11, 1]] |
-| [["Backstage passes to a TAFKAL80ETC concert", 11, 0] | [["Backstage passes to a TAFKAL80ETC concert", 10, 1]] |
+| Input                                                  | Output                                                  |
+| ------------------------------------------------------ | ------------------------------------------------------- |
+| [["Backstage passes to a TAFKAL80ETC concert", 0, 0]   | [["Backstage passes to a TAFKAL80ETC concert", -1, 0]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 12, 0]  | [["Backstage passes to a TAFKAL80ETC concert", 11, 1]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 11, 0]  | [["Backstage passes to a TAFKAL80ETC concert", 10, 1]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 10, 0]  | [["Backstage passes to a TAFKAL80ETC concert", 9, 2]]   |
+| [["Backstage passes to a TAFKAL80ETC concert", 6, 0]   | [["Backstage passes to a TAFKAL80ETC concert", 5, 2]]   |
+| [["Backstage passes to a TAFKAL80ETC concert", 5, 0]   | [["Backstage passes to a TAFKAL80ETC concert", 4, 3]]   |
+| [["Backstage passes to a TAFKAL80ETC concert", 1, 0]   | [["Backstage passes to a TAFKAL80ETC concert", 0, 3]]   |
+| [["Backstage passes to a TAFKAL80ETC concert", 0, 10]  | [["Backstage passes to a TAFKAL80ETC concert", -1, 0]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", -1, 10] | [["Backstage passes to a TAFKAL80ETC concert", -2, 0]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", -1, -1] | [["Backstage passes to a TAFKAL80ETC concert", -2, 0]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 11, -2] | [["Backstage passes to a TAFKAL80ETC concert", 10, -1]] |
+| [["Backstage passes to a TAFKAL80ETC concert", 6, -3]  | [["Backstage passes to a TAFKAL80ETC concert", 5, -1]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 1, -4]  | [["Backstage passes to a TAFKAL80ETC concert", 0, -1]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 11, 50] | [["Backstage passes to a TAFKAL80ETC concert", 10, 50]] |
+| [["Backstage passes to a TAFKAL80ETC concert", 6, 50]  | [["Backstage passes to a TAFKAL80ETC concert", 5, 50]]  |
+| [["Backstage passes to a TAFKAL80ETC concert", 1, 50]  | [["Backstage passes to a TAFKAL80ETC concert", 0, 50]]  |
