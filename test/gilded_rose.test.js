@@ -16,11 +16,11 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].quality).toBe(1);
   });
   it("reduces items sellIn and Quality values by 1 when sellIn greater than 0", () => {
-    const gildedRose = new Shop([new Item("foo", 1, 2)]);
+    const gildedRose = new Shop([new Item("foo", 2, 3)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
-    expect(items[0].sellIn).toBe(0);
-    expect(items[0].quality).toBe(1);
+    expect(items[0].sellIn).toBe(1);
+    expect(items[0].quality).toBe(2);
   });
   it("reduces items sellIn by 1 and Quality by 2 when sellIn is less than 0", () => {
     const gildedRose = new Shop([new Item("foo", -1, 4)]);
@@ -36,14 +36,14 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(2);
   });
-  it("reduces items sellIn by 1 and fixes Quality to 0", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when sellIn is less", () => {
     const gildedRose = new Shop([new Item("foo", -1, 1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
   });
-  it("reduces items sellIn by 1 and no change to Quality when quality is less than )", () => {
+  it("reduces items sellIn by 1 and no change to Quality when quality is less than 0", () => {
     const gildedRose = new Shop([new Item("foo", -1, -1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
@@ -175,7 +175,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(60);
   });
-  it("no change when quality is less than 50", () => {
+  it("no change when quality is less than 0", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", -1, -60),
     ]);
@@ -183,5 +183,35 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(-60);
+  });
+});
+
+describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuality", () => {
+  it("reduces items sellIn value by 1 and no change to quality when 0 and sellIn value is 0", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(0);
+  });
+  it("reduces items sellIn value by 1 and increases quality when sellIn value greater than 10", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 12, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(11);
+    expect(items[0].quality).toBe(1);
+  });
+  it("reduces items sellIn value by 1 and increases quality when sellIn is 11", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(10);
+    expect(items[0].quality).toBe(1);
   });
 });

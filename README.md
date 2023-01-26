@@ -26,3 +26,54 @@ Feel free to make any changes to the `UpdateQuality` method and add any new code
 Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) (translated by Emily Bache) in the language of your choice. The aim is to practice good design in the language of your choice. Refactor the code in such a way that adding the new "conjured" functionality is easy.
 
 You don't need to clone the repo if you don't want to. Feel free to copy [the ruby code](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/ruby/gilded_rose.rb) into a new folder and write your tests from scratch.
+
+## Input and Outputs
+
+Standard item when updateQuality run once
+
+| Input             | Output           |
+| ----------------- | ---------------- |
+| [["foo", 0, 0]]   | [["foo", -1, 0]] |
+| [["foo", 1, 2]]   | [["foo", 0, 1]]  |
+| [["foo", 2, 3]]   | [["foo", 1, 3]]  |
+| [["foo", -1, 4]]  | [["foo", 0, 2]]  |
+| [["foo", 0, 4]]   | [["foo", -1, 2]] |
+| [["foo", -1, 1]]  | [["foo", -2, 0]] |
+| [["foo", -1, -1]] | ["foo", -2, -1]] |
+
+Aged Brie item when updateQuality run once
+
+| Input                  | Output                  |
+| ---------------------- | ----------------------- |
+| [["Aged Brie", 1, 0]   | [["Aged Brie", 0, 1]]   |
+| [["Aged Brie", 0, 0]   | [["Aged Brie", -1, 2]]  |
+| [["Aged Brie", -1, 0]  | [["Aged Brie", -2, 2]]  |
+| [["Aged Brie", 0, 50]  | [["Aged Brie", -1, 50]] |
+| [["Aged Brie", -1, 50] | [["Aged Brie", -2, 50]] |
+| [["Aged Brie", 1, 50]  | [["Aged Brie", 0, 50]]  |
+| [["Aged Brie", 0, 49]  | [["Aged Brie", -1, 50]] |
+| [["Aged Brie", -1, 49] | [["Aged Brie", -2, 50]] |
+| [["Aged Brie", 1, 49]  | [["Aged Brie", 0, 50]]  |
+| [["Aged Brie", 1, -1]  | [["Aged Brie", 0, 0]]   |
+| [["Aged Brie", 0, -1]  | [["Aged Brie", -1, 1]]  |
+| [["Aged Brie", -1, -1] | [["Aged Brie", -2, 1]]  |
+
+Sulfuras, Hand of Ragnaros item when updateQuality run once
+
+| Input                                     | Output                                    |
+| ----------------------------------------- | ----------------------------------------- |
+| [["Sulfuras, Hand of Ragnaros", 1, 10]]   | [["Sulfuras, Hand of Ragnaros", 1, 10]]   |
+| [["Sulfuras, Hand of Ragnaros", 0, 10]]   | [["Sulfuras, Hand of Ragnaros", 0, 10]]   |
+| [["Sulfuras, Hand of Ragnaros", -1, 10]]  | [["Sulfuras, Hand of Ragnaros", -1, 10]]  |
+| [["Sulfuras, Hand of Ragnaros", -1, 60]]  | [["Sulfuras, Hand of Ragnaros", -1, 60]]  |
+| [["Sulfuras, Hand of Ragnaros", -1, -60]] | [["Sulfuras, Hand of Ragnaros", -1, -60]] |
+
+Backstage passes to a TAFKAL80ETC concert item when updateQuality run once
+
+- “Backstage passes”, like aged brie, increases in Quality as it’s `SellIn` value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+
+| Input                                                 | Output                                                 |
+| ----------------------------------------------------- | ------------------------------------------------------ |
+| [["Backstage passes to a TAFKAL80ETC concert", 0, 0]  | [["Backstage passes to a TAFKAL80ETC concert", -1, 0]] |
+| [["Backstage passes to a TAFKAL80ETC concert", 12, 0] | [["Backstage passes to a TAFKAL80ETC concert", 11, 1]] |
+| [["Backstage passes to a TAFKAL80ETC concert", 11, 0] | [["Backstage passes to a TAFKAL80ETC concert", 10, 1]] |
