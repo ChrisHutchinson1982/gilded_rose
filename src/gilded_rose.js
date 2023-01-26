@@ -75,13 +75,23 @@ class Shop {
   }
 
   updateItemQuality(item) {
-    if (item.quality > 0) {
-      if (item.sellIn > 0 || item.quality === 1) {
-        item.quality -= 1;
-      } else {
-        item.quality -= 2;
-      }
+    if (item.name === "Aged Brie") {
+      this.updateAgedBrieItem(item);
+    } else if (item.quality > 0) {
+      this.updateStandardItem(item);
     }
+  }
+
+  updateStandardItem(item) {
+    if (item.sellIn > 0 || item.quality === 1) {
+      item.quality -= 1;
+    } else {
+      item.quality -= 2;
+    }
+  }
+
+  updateAgedBrieItem(item) {
+    item.quality += 1;
   }
 }
 
