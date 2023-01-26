@@ -77,38 +77,22 @@ class Shop {
   updateQualityValue(item) {
     if (item.name === "Aged Brie") {
       if (item.quality < 50) {
-        this.updateAgedBrieItem(item);
+        this.runQualityRules(item, 1, 2, 49);
       }
     } else {
       if (item.quality > 0) {
-        this.updateStandardItem(item);
+        this.runQualityRules(item, -1, -2, 1);
       }
     }
   }
 
-  updateStandardItem(item) {
-    if (item.sellIn > 0 || item.quality === 0) {
-      item.quality -= 1;
+  runQualityRules(item, degradeValueInDate, degradeValueOutDate, qualityLimit) {
+    if (item.sellIn > 0 || item.quality === qualityLimit) {
+      item.quality += degradeValueInDate;
     } else {
-      item.quality -= 2;
+      item.quality += degradeValueOutDate;
     }
   }
-
-  updateAgedBrieItem(item) {
-    if (item.sellIn > 0 || item.quality === 49) {
-      item.quality += 1;
-    } else {
-      item.quality += 2;
-    }
-  }
-
-  // runQualityRules(item, degradeValueInDate, degradeValueOutDate, qualityLimit) {
-  //   if (item.sellIn > 0 || item.quality === qualityLimit) {
-  //     item.quality += degradeValueInDate;
-  //   } else {
-  //     item.quality += degradeValueOutDate;
-  //   }
-  // }
 }
 
 module.exports = {
