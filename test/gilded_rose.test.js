@@ -110,21 +110,21 @@ describe("add Aged Brie item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is 0", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is 0", () => {
     const gildedRose = new Shop([new Item("Aged Brie", 0, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Aged Brie");
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is less than 0", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is less than 0", () => {
     const gildedRose = new Shop([new Item("Aged Brie", -1, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Aged Brie");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is greater than 0", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 when quality is 49 and sellIn is greater than 0", () => {
     const gildedRose = new Shop([new Item("Aged Brie", 1, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Aged Brie");
