@@ -75,7 +75,7 @@ describe("add Aged Brie item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(1);
   });
-  xit("reduces items sellIn by 1 and increases quality by 2 when sellIn is 0", () => {
+  it("reduces items sellIn by 1 and increases quality by 2 when sellIn is 0", () => {
     const gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Aged Brie");
