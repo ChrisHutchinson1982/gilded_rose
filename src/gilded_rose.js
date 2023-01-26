@@ -76,9 +76,13 @@ class Shop {
 
   updateItemQuality(item) {
     if (item.name === "Aged Brie") {
-      this.updateAgedBrieItem(item);
-    } else if (item.quality > 0) {
-      this.updateStandardItem(item);
+      if (item.quality < 50) {
+        this.updateAgedBrieItem(item);
+      }
+    } else {
+      if (item.quality > 0) {
+        this.updateStandardItem(item);
+      }
     }
   }
 
