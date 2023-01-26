@@ -98,6 +98,8 @@ class Shop {
       item.quality += 2;
     } else if (item.sellIn > 0) {
       item.quality += 3;
+    } else {
+      item.quality = 0;
     }
   }
 
