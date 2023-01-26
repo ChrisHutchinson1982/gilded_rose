@@ -96,6 +96,8 @@ class Shop {
       item.quality += 1;
     } else if (item.sellIn > 5) {
       item.quality += 2;
+    } else if (item.sellIn > 0) {
+      item.quality += 3;
     }
   }
 
