@@ -75,14 +75,12 @@ class Shop {
   }
 
   updateItemQuality(item) {
-    if (item.sellIn > 0) {
-      item.quality -= 1;
-    } else if (item.sellIn <= 0) {
-      item.quality -= 2;
-    }
-
-    if (item.quality < 0) {
-      item.quality = 0;
+    if (item.quality > 0) {
+      if (item.sellIn > 0 || item.quality === 1) {
+        item.quality -= 1;
+      } else {
+        item.quality -= 2;
+      }
     }
   }
 }

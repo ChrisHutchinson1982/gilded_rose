@@ -51,14 +51,14 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
   });
-  xit("reduces items sellIn by 1 when -1 and no change to Quality when quality is less than 0", () => {
+  it("reduces items sellIn by 1 when -1 and no change to Quality when quality is less than 0", () => {
     const gildedRose = new Shop([new Item("foo", -1, -1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(-1);
   });
-  xit("reduces items sellIn by 1 when 1 and no change to Quality when quality is less than 0", () => {
+  it("reduces items sellIn by 1 when 1 and no change to Quality when quality is less than 0", () => {
     const gildedRose = new Shop([new Item("foo", 1, -1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
