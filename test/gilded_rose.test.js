@@ -9,7 +9,7 @@ describe("updateQuality returns empty array", () => {
 });
 
 describe("add standard item and run updateQuality", () => {
-  xit("reduces items sellIn value by 1 and no change to quality when 0", () => {
+  it("reduces items sellIn value by 1 and no change to quality when 0", () => {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("foo");
