@@ -164,7 +164,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(1);
     expect(items[0].quality).toBe(10);
   });
-  xit("no change when sellIn is 0", () => {
+  it("no change when sellIn is 0", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", 0, 10),
     ]);
@@ -173,7 +173,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(10);
   });
-  xit("no change when sellIn is less than 0", () => {
+  it("no change when sellIn is less than 0", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", -1, 10),
     ]);
@@ -182,7 +182,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(10);
   });
-  xit("no change when quality is greater than 50", () => {
+  it("no change when quality is greater than 50", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", -1, 60),
     ]);
@@ -191,7 +191,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(60);
   });
-  xit("no change when quality is less than 0", () => {
+  it("no change when quality is less than 0", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", -1, -60),
     ]);
