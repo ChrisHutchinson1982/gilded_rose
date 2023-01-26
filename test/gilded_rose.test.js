@@ -203,7 +203,7 @@ describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
 });
 
 describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuality", () => {
-  xit("reduces items sellIn value by 1 and no change to quality when 0 and sellIn value is 0", () => {
+  it("reduces items sellIn value by 1 and no change to quality when 0 and sellIn value is 0", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
     ]);
@@ -212,7 +212,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(0);
   });
-  xit("reduces items sellIn value by 1 and increases quality by 1 when sellIn value greater than 10", () => {
+  it("reduces items sellIn value by 1 and increases quality by 1 when sellIn value greater than 10", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 12, 0),
     ]);
