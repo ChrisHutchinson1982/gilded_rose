@@ -14,7 +14,7 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      this.updateItemQuality(item);
+      this.updateQualityValue(item);
 
       item.sellIn -= 1;
 
@@ -74,7 +74,7 @@ class Shop {
     return this.items;
   }
 
-  updateItemQuality(item) {
+  updateQualityValue(item) {
     if (item.name === "Aged Brie") {
       if (item.quality < 50) {
         this.updateAgedBrieItem(item);
@@ -87,7 +87,7 @@ class Shop {
   }
 
   updateStandardItem(item) {
-    if (item.sellIn > 0 || item.quality === 1) {
+    if (item.sellIn > 0 || item.quality === 0) {
       item.quality -= 1;
     } else {
       item.quality -= 2;
@@ -101,6 +101,14 @@ class Shop {
       item.quality += 2;
     }
   }
+
+  // runQualityRules(item, degradeValueInDate, degradeValueOutDate, qualityLimit) {
+  //   if (item.sellIn > 0 || item.quality === qualityLimit) {
+  //     item.quality += degradeValueInDate;
+  //   } else {
+  //     item.quality += degradeValueOutDate;
+  //   }
+  // }
 }
 
 module.exports = {
