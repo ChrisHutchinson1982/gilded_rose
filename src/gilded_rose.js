@@ -14,9 +14,10 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      this.updateQualityValue(item);
-
-      item.sellIn -= 1;
+      if (item.name !== "Sulfuras, Hand of Ragnaros") {
+        this.updateQualityValue(item);
+        item.sellIn -= 1;
+      }
 
       //   if (
       //     this.items[i].name != "Aged Brie" &&

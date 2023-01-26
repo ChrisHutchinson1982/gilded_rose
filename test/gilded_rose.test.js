@@ -155,7 +155,7 @@ describe("add Aged Brie item and run updateQuality", () => {
 });
 
 describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
-  xit("no change when sellIn greater than 0", () => {
+  it("no change when sellIn greater than 0", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", 1, 10),
     ]);
