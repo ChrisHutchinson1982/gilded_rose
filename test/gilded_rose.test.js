@@ -1,5 +1,13 @@
 const { Shop, Item } = require("../src/gilded_rose");
 
+describe("updateQuality returns empty array", () => {
+  it("when no items added", () => {
+    const gildedRose = new Shop();
+    const items = gildedRose.updateQuality();
+    expect(items).toEqual([]);
+  });
+});
+
 describe("add standard item and run updateQuality", () => {
   it("reduces items sellIn value by 1 and no change to quality when 0", () => {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
@@ -145,6 +153,7 @@ describe("add Aged Brie item and run updateQuality", () => {
     expect(items[0].quality).toBe(1);
   });
 });
+
 describe("add Sulfuras, Hand of Ragnaros item and run updateQuality", () => {
   it("no change when sellIn greater than 0", () => {
     const gildedRose = new Shop([
@@ -337,5 +346,99 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
+  });
+  it("reduces items sellIn by 1 and fixes quality at 50 and sellIn is 6", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 6, 49),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(5);
+    expect(items[0].quality).toBe(50);
+  });
+  it("reduces items sellIn by 1 and fixes quality at 50 when 49 and sellIn is 1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 49),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(50);
+  });
+  it("reduces items sellIn by 1 and fixes quality at 50 when 48 and sellIn is 1", () => {
+    const gildedRose = new Shop([
+      new Item("Backstage passes to a TAFKAL80ETC concert", 1, 48),
+    ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[0].sellIn).toBe(0);
+    expect(items[0].quality).toBe(50);
+  });
+});
+
+describe("add mutilple items and run updateQuality", () => {
+  it("when two standard items", () => {
+    const gildedRose = new Shop([
+      new Item("foo", 0, 0),
+      new Item("something", 1, 2),
+    ]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].name).toBe("foo");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(0);
+    expect(items[1].name).toBe("something");
+    expect(items[1].sellIn).toBe(0);
+    expect(items[1].quality).toBe(1);
+  });
+  it("when two standard items and one Aged Brie item", () => {
+    const gildedRose = new Shop([
+      new Item("foo", 0, 0),
+      new Item("something", 1, 2),
+      new Item("Aged Brie", 1, 0),
+    ]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].name).toBe("foo");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(0);
+    expect(items[1].name).toBe("something");
+    expect(items[1].sellIn).toBe(0);
+    expect(items[1].quality).toBe(1);
+    expect(items[2].name).toBe("Aged Brie");
+    expect(items[2].sellIn).toBe(0);
+    expect(items[2].quality).toBe(1);
+  });
+  it("when one standard item and one Sulfuras, Hand of Ragnaros item", () => {
+    const gildedRose = new Shop([
+      new Item("foo", 0, 0),
+      new Item("Sulfuras, Hand of Ragnaros", 1, 10),
+    ]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].name).toBe("foo");
+    expect(items[0].sellIn).toBe(-1);
+    expect(items[0].quality).toBe(0);
+    expect(items[1].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[1].sellIn).toBe(1);
+    expect(items[1].quality).toBe(10);
+  });
+  it("when one Sulfuras, Hand of Ragnaros and one TAFKAL80ETC concert item item", () => {
+    const gildedRose = new Shop([
+      new Item("Sulfuras, Hand of Ragnaros", 1, 10),
+      new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
+    ]);
+
+    const items = gildedRose.updateQuality();
+
+    expect(items[0].name).toBe("Sulfuras, Hand of Ragnaros");
+    expect(items[0].sellIn).toBe(1);
+    expect(items[0].quality).toBe(10);
+    expect(items[1].name).toBe("Backstage passes to a TAFKAL80ETC concert");
+    expect(items[1].sellIn).toBe(-1);
+    expect(items[1].quality).toBe(0);
   });
 });
