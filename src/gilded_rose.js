@@ -14,6 +14,8 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       if (this.items[i].sellIn > 0) {
         this.items[i].quality -= 1;
+      } else if (this.items[i].sellIn < 0) {
+        this.items[i].quality -= 2;
       }
 
       this.items[i].sellIn -= 1;
