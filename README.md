@@ -105,3 +105,12 @@ Mutiple items when updateQuality run once
 | [{"foo", 0, 0}, {"something", 1, 2}, {"Aged Brie", 1, 0}] | [{"foo", -1, 0}, {"something", 0, 1}, {"Aged Brie", 0, 1}]                                    |
 | [{"foo", 0, 0}, {"Sulfuras, Hand of Ragnaros", 1, 10}]    | [{"foo", -1, 0}, {"Sulfuras, Hand of Ragnaros", 1, 10}]                                       |
 | [{"Backstage passes to a TAFKAL80ETC concert", 0, 0}]     | [{"Sulfuras, Hand of Ragnaros", 1, 10}, {"Backstage passes to a TAFKAL80ETC concert", -1, 0}] |
+
+When updateQuality run twice
+
+| Input                                                  | Output                                                |
+| ------------------------------------------------------ | ----------------------------------------------------- |
+| [{"foo", 1, 2}]                                        | [{"foo", -1, 0}]                                      |
+| [{"Aged Brie", 0, 0}]                                  | [{"Aged Brie", -2, 4}]                                |
+| [{"Sulfuras, Hand of Ragnaros", 1, 10}]                | [{"Sulfuras, Hand of Ragnaros", 1, 10}]               |
+| [{"Backstage passes to a TAFKAL80ETC concert", 11, 0}] | [{"Backstage passes to a TAFKAL80ETC concert", 9, 3}] |
