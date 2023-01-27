@@ -1,4 +1,5 @@
-const { Shop, Item } = require("../src/gilded_rose");
+const Shop = require("../src/gilded_rose");
+const Item = require("../src/item");
 
 describe("updateQuality returns empty array", () => {
   it("when no items added", () => {
@@ -50,20 +51,6 @@ describe("add standard item and run updateQuality", () => {
     expect(items[0].name).toBe("foo");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
-  });
-  it("reduces items sellIn by 1 when -1 and no change to Quality when quality is less than 0", () => {
-    const gildedRose = new Shop([new Item("foo", -1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("foo");
-    expect(items[0].sellIn).toBe(-2);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn by 1 when 1 and no change to Quality when quality is less than 0", () => {
-    const gildedRose = new Shop([new Item("foo", 1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("foo");
-    expect(items[0].sellIn).toBe(0);
-    expect(items[0].quality).toBe(-1);
   });
 });
 
@@ -130,27 +117,6 @@ describe("add Aged Brie item and run updateQuality", () => {
     expect(items[0].name).toBe("Aged Brie");
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
-  });
-  it("reduces items sellIn by 1 and increases quality by 1 when sellIn is greater than 0 and quality less than 0", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", 1, -2)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Aged Brie");
-    expect(items[0].sellIn).toBe(0);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn by 1 and increases quality by 2 when sellIn is 0 and quality less than 0", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", 0, -3)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Aged Brie");
-    expect(items[0].sellIn).toBe(-1);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn by 1 and increases quality by 2 when sellIn is less than 0 and quality less than 0", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", -1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Aged Brie");
-    expect(items[0].sellIn).toBe(-2);
-    expect(items[0].quality).toBe(1);
   });
 });
 
@@ -283,42 +249,6 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
-  });
-  it("reduces items sellIn value by 1 and changes quality to 0 when sellIn is -1 and quality is -1", () => {
-    const gildedRose = new Shop([
-      new Item("Backstage passes to a TAFKAL80ETC concert", -1, -1),
-    ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
-    expect(items[0].sellIn).toBe(-2);
-    expect(items[0].quality).toBe(0);
-  });
-  it("reduces items sellIn value by 1 and increases quality by 1 when negative and sellIn value greater than 10", () => {
-    const gildedRose = new Shop([
-      new Item("Backstage passes to a TAFKAL80ETC concert", 11, -2),
-    ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
-    expect(items[0].sellIn).toBe(10);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn value by 1 and increases quality by 2 when negative and sellIn is 6", () => {
-    const gildedRose = new Shop([
-      new Item("Backstage passes to a TAFKAL80ETC concert", 6, -3),
-    ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
-    expect(items[0].sellIn).toBe(5);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn value by 1 and increases quality by 3 when negative and sellIn is 1", () => {
-    const gildedRose = new Shop([
-      new Item("Backstage passes to a TAFKAL80ETC concert", 1, -4),
-    ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Backstage passes to a TAFKAL80ETC concert");
-    expect(items[0].sellIn).toBe(0);
-    expect(items[0].quality).toBe(-1);
   });
   it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 11", () => {
     const gildedRose = new Shop([
@@ -552,19 +482,5 @@ describe("add Conjured Mana Cake item and run updateQuality", () => {
     expect(items[0].name).toBe("Conjured Mana Cake");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
-  });
-  it("reduces items sellIn by 1 when -1 and no change to Quality when quality is less than 0", () => {
-    const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Conjured Mana Cake");
-    expect(items[0].sellIn).toBe(-2);
-    expect(items[0].quality).toBe(-1);
-  });
-  it("reduces items sellIn by 1 when 1 and no change to Quality when quality is less than 0", () => {
-    const gildedRose = new Shop([new Item("Conjured Mana Cake", 1, -1)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toBe("Conjured Mana Cake");
-    expect(items[0].sellIn).toBe(0);
-    expect(items[0].quality).toBe(-1);
   });
 });

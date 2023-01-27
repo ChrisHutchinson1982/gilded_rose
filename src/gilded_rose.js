@@ -1,11 +1,3 @@
-class Item {
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
-
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -35,17 +27,13 @@ class Shop {
   }
 
   updateNormalQuality(item) {
-    if (item.quality > 0) {
-      this.runQualityRules(item, -1, -1, -1, -2);
-      this.defaultToMinValue(item);
-    }
+    this.runQualityRules(item, -1, -1, -1, -2);
+    this.defaultToMinValue(item);
   }
 
   updateAgedBrieQuality(item) {
-    if (item.quality < 50) {
-      this.runQualityRules(item, 1, 1, 1, 2);
-      this.defaultToMaxValue(item);
-    }
+    this.runQualityRules(item, 1, 1, 1, 2);
+    this.defaultToMaxValue(item);
   }
 
   updateBackStageQuality(item) {
@@ -54,10 +42,8 @@ class Shop {
   }
 
   updateConjuredQuality(item) {
-    if (item.quality > 0) {
-      this.runQualityRules(item, -2, -2, -2, -4);
-      this.defaultToMinValue(item);
-    }
+    this.runQualityRules(item, -2, -2, -2, -4);
+    this.defaultToMinValue(item);
   }
 
   runQualityRules(
@@ -91,7 +77,4 @@ class Shop {
   }
 }
 
-module.exports = {
-  Item,
-  Shop,
-};
+module.exports = Shop;
