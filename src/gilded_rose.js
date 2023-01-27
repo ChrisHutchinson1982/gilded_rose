@@ -6,7 +6,7 @@ class Shop {
   updateQuality() {
     this.items.forEach((item) => {
       if (item.name !== "Sulfuras, Hand of Ragnaros") {
-        this.updateQualityValue(item);
+        this.#updateQualityValue(item);
         item.sellIn -= 1;
       }
     });
@@ -14,39 +14,19 @@ class Shop {
     return this.items;
   }
 
-  updateQualityValue(item) {
+  #updateQualityValue(item) {
     if (item.name === "Aged Brie") {
-      this.updateAgedBrieQuality(item);
+      this.#runQualityRules(item, 1, 1, 1, 2);
     } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-      this.updateBackStageQuality(item);
+      this.#runQualityRules(item, 1, 2, 3, item.quality * -1);
     } else if (item.name === "Conjured Mana Cake") {
-      this.updateConjuredQuality(item);
+      this.#runQualityRules(item, -2, -2, -2, -4);
     } else {
-      this.updateNormalQuality(item);
+      this.#runQualityRules(item, -1, -1, -1, -2);
     }
   }
 
-  updateNormalQuality(item) {
-    this.runQualityRules(item, -1, -1, -1, -2);
-    this.defaultToMinValue(item);
-  }
-
-  updateAgedBrieQuality(item) {
-    this.runQualityRules(item, 1, 1, 1, 2);
-    this.defaultToMaxValue(item);
-  }
-
-  updateBackStageQuality(item) {
-    this.runQualityRules(item, 1, 2, 3, item.quality * -1);
-    this.defaultToMaxValue(item);
-  }
-
-  updateConjuredQuality(item) {
-    this.runQualityRules(item, -2, -2, -2, -4);
-    this.defaultToMinValue(item);
-  }
-
-  runQualityRules(
+  #runQualityRules(
     item,
     plusTenDayDegrade,
     plusFiveDayDegrade,
@@ -62,16 +42,13 @@ class Shop {
     } else {
       item.quality += zeroOrLessDayDegrade;
     }
+    this.defaultToMinMaxValues(item);
   }
 
-  defaultToMaxValue(item) {
+  defaultToMinMaxValues(item) {
     if (item.quality > 50) {
       item.quality = 50;
-    }
-  }
-
-  defaultToMinValue(item) {
-    if (item.quality < 0) {
+    } else if (item.quality < 0) {
       item.quality = 0;
     }
   }
