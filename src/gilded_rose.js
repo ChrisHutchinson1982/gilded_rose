@@ -85,6 +85,12 @@ class Shop {
     }
   }
 
+  updateStandardQuality(item) {
+    if (item.quality > 0) {
+      this.runQualityRules(item, -1, -2, 1);
+    }
+  }
+
   updateAgedBrieQuality(item) {
     if (item.quality < 50) {
       this.runQualityRules(item, 1, 2, 49);
@@ -100,12 +106,6 @@ class Shop {
       item.quality += 3;
     } else {
       item.quality = 0;
-    }
-  }
-
-  updateStandardQuality(item) {
-    if (item.quality > 0) {
-      this.runQualityRules(item, -1, -2, 1);
     }
   }
 
