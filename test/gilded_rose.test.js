@@ -320,7 +320,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(-1);
   });
-  xit("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 11", () => {
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 11", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 11, 50),
     ]);

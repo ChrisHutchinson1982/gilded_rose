@@ -107,6 +107,9 @@ class Shop {
     } else {
       item.quality = 0;
     }
+    if (item.quality > 50) {
+      item.quality = 50;
+    }
   }
 
   runQualityRules(item, degradeValueInDate, degradeValueOutDate, qualityLimit) {
