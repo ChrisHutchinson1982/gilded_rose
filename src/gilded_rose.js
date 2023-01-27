@@ -54,24 +54,25 @@ class Shop {
   }
 
   updateConjuredQuality(item) {
-    item.quality = 0;
+    this.runQualityRules(item, -2, -2, -2, -1);
+    this.defaultToMinValue(item);
   }
 
   runQualityRules(
     item,
-    PlusTenDayDegrade,
-    PlusFiveDayDegrade,
-    PlusZeroDayDegrade,
-    ZeroOrLessDayDegrade
+    plusTenDayDegrade,
+    plusFiveDayDegrade,
+    plusZeroDayDegrade,
+    zeroOrLessDayDegrade
   ) {
     if (item.sellIn > 10) {
-      item.quality += PlusTenDayDegrade;
+      item.quality += plusTenDayDegrade;
     } else if (item.sellIn > 5) {
-      item.quality += PlusFiveDayDegrade;
+      item.quality += plusFiveDayDegrade;
     } else if (item.sellIn > 0) {
-      item.quality += PlusZeroDayDegrade;
+      item.quality += plusZeroDayDegrade;
     } else {
-      item.quality += ZeroOrLessDayDegrade;
+      item.quality += zeroOrLessDayDegrade;
     }
   }
 
