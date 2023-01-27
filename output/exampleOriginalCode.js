@@ -1,5 +1,4 @@
-const Shop = require("../src/shop");
-const Item = require("../src/item");
+const { Shop, Item } = require("../src/originalCode");
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20),
@@ -11,11 +10,11 @@ const items = [
   new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
   new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 
-  // This Conjured item is now working
+  // This Conjured item does not work properly yet
   new Item("Conjured Mana Cake", 3, 6),
 ];
 
-const days = Number(process.argv[2]) || 30;
+const days = Number(process.argv[2]) || 10;
 const gildedRose = new Shop(items);
 
 console.log("OMGHAI!");
