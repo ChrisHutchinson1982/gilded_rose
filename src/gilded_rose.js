@@ -27,6 +27,8 @@ class Shop {
       this.updateAgedBrieQuality(item);
     } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
       this.updateBackStageQuality(item);
+    } else if (item.name === "Conjured Mana Cake") {
+      this.updateConjuredQuality(item);
     } else {
       this.updateNormalQuality(item);
     }
@@ -49,6 +51,10 @@ class Shop {
   updateBackStageQuality(item) {
     this.runQualityRules(item, 1, 2, 3, item.quality * -1);
     this.defaultToMaxValue(item);
+  }
+
+  updateConjuredQuality(item) {
+    item.quality = 0;
   }
 
   runQualityRules(
