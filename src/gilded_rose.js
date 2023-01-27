@@ -12,14 +12,12 @@ class Shop {
   }
 
   updateQuality() {
-    for (let i = 0; i < this.items.length; i++) {
-      const item = this.items[i];
-
+    this.items.forEach((item) => {
       if (item.name !== "Sulfuras, Hand of Ragnaros") {
         this.updateQualityValue(item);
         item.sellIn -= 1;
       }
-    }
+    });
 
     return this.items;
   }
@@ -36,36 +34,38 @@ class Shop {
 
   updateStandardQuality(item) {
     if (item.quality > 0) {
-      this.runQualityRules(item, -1, -2);
+      this.runQualityRules(item, -1, -1, -1, -2);
       this.defaultToMinValue(item);
     }
   }
 
   updateAgedBrieQuality(item) {
     if (item.quality < 50) {
-      this.runQualityRules(item, 1, 2);
+      this.runQualityRules(item, 1, 1, 1, 2);
       this.defaultToMaxValue(item);
     }
   }
 
   updateBackStageQuality(item) {
-    if (item.sellIn > 10) {
-      item.quality += 1;
-    } else if (item.sellIn > 5) {
-      item.quality += 2;
-    } else if (item.sellIn > 0) {
-      item.quality += 3;
-    } else {
-      item.quality = 0;
-    }
+    this.runQualityRules(item, 1, 2, 3, item.quality * -1);
     this.defaultToMaxValue(item);
   }
 
-  runQualityRules(item, degradeValueInDate, degradeValueOutDate) {
-    if (item.sellIn > 0) {
-      item.quality += degradeValueInDate;
+  runQualityRules(
+    item,
+    PlusTenDayDegrade,
+    PlusFiveDayDegrade,
+    PlusZeroDayDegrade,
+    ZeroOrLessDayDegrade
+  ) {
+    if (item.sellIn > 10) {
+      item.quality += PlusTenDayDegrade;
+    } else if (item.sellIn > 5) {
+      item.quality += PlusFiveDayDegrade;
+    } else if (item.sellIn > 0) {
+      item.quality += PlusZeroDayDegrade;
     } else {
-      item.quality += degradeValueOutDate;
+      item.quality += ZeroOrLessDayDegrade;
     }
   }
 
