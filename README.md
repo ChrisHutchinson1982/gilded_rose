@@ -27,90 +27,70 @@ Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) 
 
 You don't need to clone the repo if you don't want to. Feel free to copy [the ruby code](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/ruby/gilded_rose.rb) into a new folder and write your tests from scratch.
 
-## Input and Outputs
+## Installation/Usage Instructions
 
-**Note:** Item objects summarised below for reference only.
+To download and initialise the project:
 
-Standard item when updateQuality run once
+```sh
+$ git clone https://github.com/ChrisHutchinson1982/gilded_rose.git
+$ cd bank_tech_test
+$ npm install
 
-| Input             | Output            |
-| ----------------- | ----------------- |
-| [{"foo", 0, 0}]   | [{"foo", -1, 0}]  |
-| [{"foo", 1, 2}]   | [{"foo", 0, 1}]   |
-| [{"foo", 2, 3}]   | [{"foo", 1, 3}]   |
-| [{"foo", -1, 4}]  | [{"foo", 0, 2}]   |
-| [{"foo", 0, 4}]   | [{"foo", -1, 2}]  |
-| [{"foo", -1, 1}]  | [{"foo", -2, 0}]  |
-| [{"foo", -1, -1}] | [{"foo", -2, -1}] |
-| [{"foo", 1, -1}]  | [{"foo", 0, -1}]  |
+```
 
-Aged Brie item when updateQuality run once
+To run the code:
 
-| Input                   | Output                  |
-| ----------------------- | ----------------------- |
-| [{"Aged Brie", 1, 0}]   | [{"Aged Brie", 0, 1}]   |
-| [{"Aged Brie", 0, 0}]   | [{"Aged Brie", -1, 2}]  |
-| [{"Aged Brie", -1, 0}]  | [{"Aged Brie", -2, 2}]  |
-| [{"Aged Brie", 0, 50}]  | [{"Aged Brie", -1, 50}] |
-| [{"Aged Brie", -1, 50}] | [{"Aged Brie", -2, 50}] |
-| [{"Aged Brie", 1, 50}]  | [{"Aged Brie", 0, 50}]  |
-| [{"Aged Brie", 0, 49}]  | [{"Aged Brie", -1, 50}] |
-| [{"Aged Brie", -1, 49}] | [{"Aged Brie", -2, 50}] |
-| [{"Aged Brie", 1, 49}]  | [{"Aged Brie", 0, 50}]  |
-| [{"Aged Brie", 1, -1}]  | [{"Aged Brie", 0, 0}]   |
-| [{"Aged Brie", 0, -1}]  | [{"Aged Brie", -1, 1}]  |
-| [{"Aged Brie", -1, -1}] | [{"Aged Brie", -2, 1}]  |
+```js
+// run example output of new code (0 to 9 days)
 
-Sulfuras, Hand of Ragnaros item when updateQuality run once
+$ node output/exampleNewCode.js
 
-| Input                                     | Output                                    |
-| ----------------------------------------- | ----------------------------------------- |
-| [{"Sulfuras, Hand of Ragnaros", 1, 10}]   | [{"Sulfuras, Hand of Ragnaros", 1, 10}]   |
-| [{"Sulfuras, Hand of Ragnaros", 0, 10}]   | [{"Sulfuras, Hand of Ragnaros", 0, 10}]   |
-| [{"Sulfuras, Hand of Ragnaros", -1, 10}]  | [{"Sulfuras, Hand of Ragnaros", -1, 10}]  |
-| [{"Sulfuras, Hand of Ragnaros", -1, 60}]  | [{"Sulfuras, Hand of Ragnaros", -1, 60}]  |
-| [{"Sulfuras, Hand of Ragnaros", -1, -60}] | [{"Sulfuras, Hand of Ragnaros", -1, -60}] |
+// run example output of original code (0 to 9 days)
 
-Backstage passes to a TAFKAL80ETC concert item when updateQuality run once
+$ node output/exampleOriginalCode.js
 
-- “Backstage passes”, like aged brie, increases in Quality as it’s `SellIn` value approaches; Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert
+```
 
-| Input                                                   | Output                                                  |
-| ------------------------------------------------------- | ------------------------------------------------------- |
-| [{"Backstage passes to a TAFKAL80ETC concert", 0, 0}]   | [{"Backstage passes to a TAFKAL80ETC concert", -1, 0}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 12, 0}]  | [{"Backstage passes to a TAFKAL80ETC concert", 11, 1}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 11, 0}]  | [{"Backstage passes to a TAFKAL80ETC concert", 10, 1}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 10, 0}]  | [{"Backstage passes to a TAFKAL80ETC concert", 9, 2}]   |
-| [{"Backstage passes to a TAFKAL80ETC concert", 6, 0}]   | [{"Backstage passes to a TAFKAL80ETC concert", 5, 2}]   |
-| [{"Backstage passes to a TAFKAL80ETC concert", 5, 0}]   | [{"Backstage passes to a TAFKAL80ETC concert", 4, 3}]   |
-| [{"Backstage passes to a TAFKAL80ETC concert", 1, 0}]   | [{"Backstage passes to a TAFKAL80ETC concert", 0, 3}]   |
-| [{"Backstage passes to a TAFKAL80ETC concert", 0, 10}]  | [{"Backstage passes to a TAFKAL80ETC concert", -1, 0}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", -1, 10}] | [{"Backstage passes to a TAFKAL80ETC concert", -2, 0}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", -1, -1}] | [{"Backstage passes to a TAFKAL80ETC concert", -2, 0}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 11, -2}] | [{"Backstage passes to a TAFKAL80ETC concert", 10, -1}] |
-| [{"Backstage passes to a TAFKAL80ETC concert", 6, -3}]  | [{"Backstage passes to a TAFKAL80ETC concert", 5, -1}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 1, -4}]  | [{"Backstage passes to a TAFKAL80ETC concert", 0, -1}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 11, 50}] | [{"Backstage passes to a TAFKAL80ETC concert", 10, 50}] |
-| [{"Backstage passes to a TAFKAL80ETC concert", 6, 50}]  | [{"Backstage passes to a TAFKAL80ETC concert", 5, 50}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 1, 50}]  | [{"Backstage passes to a TAFKAL80ETC concert", 0, 50}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 6, 49}]  | [{"Backstage passes to a TAFKAL80ETC concert", 5, 50}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 1, 49}]  | [{"Backstage passes to a TAFKAL80ETC concert", 0, 50}]  |
-| [{"Backstage passes to a TAFKAL80ETC concert", 1, 48}]  | [{"Backstage passes to a TAFKAL80ETC concert", 0, 50}]  |
+To run the tests:
 
-Mutiple items when updateQuality run once
+```js
+// run tests
+$ jest
+// run test and check coverage
+$ jest --coverage
 
-| Input                                                     | Output                                                                                        |
-| --------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [{"foo", 0, 0}, {"something", 1, 2}]                      | [{"foo", -1, 0}, {"something", 0, 1}]                                                         |
-| [{"foo", 0, 0}, {"something", 1, 2}, {"Aged Brie", 1, 0}] | [{"foo", -1, 0}, {"something", 0, 1}, {"Aged Brie", 0, 1}]                                    |
-| [{"foo", 0, 0}, {"Sulfuras, Hand of Ragnaros", 1, 10}]    | [{"foo", -1, 0}, {"Sulfuras, Hand of Ragnaros", 1, 10}]                                       |
-| [{"Backstage passes to a TAFKAL80ETC concert", 0, 0}]     | [{"Sulfuras, Hand of Ragnaros", 1, 10}, {"Backstage passes to a TAFKAL80ETC concert", -1, 0}] |
+```
 
-When updateQuality run twice
+## Approach
 
-| Input                                                  | Output                                                |
-| ------------------------------------------------------ | ----------------------------------------------------- |
-| [{"foo", 1, 2}]                                        | [{"foo", -1, 0}]                                      |
-| [{"Aged Brie", 0, 0}]                                  | [{"Aged Brie", -2, 4}]                                |
-| [{"Sulfuras, Hand of Ragnaros", 1, 10}]                | [{"Sulfuras, Hand of Ragnaros", 1, 10}]               |
-| [{"Backstage passes to a TAFKAL80ETC concert", 11, 0}] | [{"Backstage passes to a TAFKAL80ETC concert", 9, 3}] |
+1. Mapped out inputs and outputs of existing functionality
+
+[Input/Output Table](/docs/inputAndOutputs.md)
+
+2. Wrote extensive test to test existing functionality
+
+3. Test drove the refactoring of existing functionality, ensuring still passing all tests
+
+4. Wrote tests for “Conjured” items enhancement
+
+5. Test drove this feature, refactoring throughout
+
+6. More refactoring
+
+7. Added Shop Class and Item Class unit tests mocking the dependencies of the object they are testing
+
+## Code Structure
+
+The code is structured into two classes:
+
+- **Item Class**
+
+  This is used to initialise each item with name, sellIn and quality information.
+
+- **Account Class**
+
+  This is used to store all items with a primary responsibility of updating items quality and sellIn values in accordance with requirements.
+
+## Test Coverage
+
+![Test Coverage](/docs/testCoverage.png)
