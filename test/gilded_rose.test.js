@@ -504,7 +504,7 @@ describe("add Conjured Mana Cake item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(1);
     expect(items[0].quality).toBe(9);
   });
-  xit("reduces items sellIn by 1 and Quality by 2 when quality 6", () => {
+  it("reduces items sellIn by 1 and Quality by 2 when quality 6", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", 2, 6)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Conjured Mana Cake");
