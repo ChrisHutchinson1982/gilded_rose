@@ -25,8 +25,6 @@ Feel free to make any changes to the `UpdateQuality` method and add any new code
 
 Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) (translated by Emily Bache) in the language of your choice. The aim is to practice good design in the language of your choice. Refactor the code in such a way that adding the new "conjured" functionality is easy.
 
-You don't need to clone the repo if you don't want to. Feel free to copy [the ruby code](https://github.com/emilybache/GildedRose-Refactoring-Kata/blob/main/ruby/gilded_rose.rb) into a new folder and write your tests from scratch.
-
 ## Installation/Usage Instructions
 
 To download and initialise the project:
@@ -42,11 +40,9 @@ To run the code:
 
 ```js
 // run example output of new code (0 to 9 days)
-
 $ node output/exampleNewCode.js
 
 // run example output of original code (0 to 9 days)
-
 $ node output/exampleOriginalCode.js
 
 ```
@@ -56,6 +52,7 @@ To run the tests:
 ```js
 // run tests
 $ jest
+
 // run test and check coverage
 $ jest --coverage
 
@@ -65,19 +62,17 @@ $ jest --coverage
 
 1. Mapped out inputs and outputs of existing functionality
 
-[Input/Output Table](/docs/inputAndOutputs.md)
+- [Input and Output Table](/docs/inputAndOutputs.md)
 
-2. Wrote extensive test to test existing functionality
+2. Wrote extensive tests to test existing functionality
 
-3. Test drove the refactoring of existing functionality, ensuring still passing all tests
+3. Test drove the refactoring of existing functionality
 
 4. Wrote tests for “Conjured” items enhancement
 
 5. Test drove this feature, refactoring throughout
 
-6. More refactoring
-
-7. Added Shop Class and Item Class unit tests mocking the dependencies of the object they are testing
+6. Added Shop Class and Item Class unit tests mocking the dependencies of the object they are testing
 
 ## Code Structure
 
@@ -85,11 +80,11 @@ The code is structured into two classes:
 
 - **Item Class**
 
-  This is used to initialise each item with name, sellIn and quality information.
+  This is used to initialise each item with `name`, `sellIn` and `quality` information.
 
 - **Account Class**
 
-  This is used to store all items with a primary responsibility of updating items quality and sellIn values in accordance with requirements.
+  This is used to store all items with a primary responsibility of updating items `quality` and `sellIn` values in accordance with requirements.
 
 ## Test Coverage
 
