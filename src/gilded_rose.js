@@ -54,8 +54,10 @@ class Shop {
   }
 
   updateConjuredQuality(item) {
-    this.runQualityRules(item, -2, -2, -2, -4);
-    this.defaultToMinValue(item);
+    if (item.quality > 0) {
+      this.runQualityRules(item, -2, -2, -2, -4);
+      this.defaultToMinValue(item);
+    }
   }
 
   runQualityRules(
