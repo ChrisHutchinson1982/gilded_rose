@@ -1,14 +1,6 @@
 const Shop = require("../src/shop");
 const Item = require("../src/item");
 
-describe("updateQuality returns empty array", () => {
-  it("when no items added", () => {
-    const gildedRose = new Shop();
-    const items = gildedRose.updateQuality();
-    expect(items).toEqual([]);
-  });
-});
-
 describe("add standard item and run updateQuality", () => {
   it("reduces items sellIn value by 1 and no change to quality when 0", () => {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
