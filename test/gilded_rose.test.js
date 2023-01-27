@@ -525,28 +525,28 @@ describe("add Conjured Mana Cake item and run updateQuality", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(1);
   });
-  xit("reduces items sellIn by 1 and fixes Quality to 0 when sellIn is 1", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when sellIn is 1", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", 1, 1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Conjured Mana Cake");
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(0);
   });
-  xit("reduces items sellIn by 1 and fixes Quality to 0 when 3 and sellIn is less than 0", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when 3 and sellIn is less than 0", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 3)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Conjured Mana Cake");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
   });
-  xit("reduces items sellIn by 1 and fixes Quality to 0 when 2 and sellIn is less than 0", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when 2 and sellIn is less than 0", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 2)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Conjured Mana Cake");
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(0);
   });
-  xit("reduces items sellIn by 1 and fixes Quality to 0 when 1 and sellIn is less than 0", () => {
+  it("reduces items sellIn by 1 and fixes Quality to 0 when 1 and sellIn is less than 0", () => {
     const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).toBe("Conjured Mana Cake");
