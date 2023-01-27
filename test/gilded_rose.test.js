@@ -377,7 +377,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
 });
 
 describe("add mutilple items and run updateQuality", () => {
-  xit("when two standard items", () => {
+  it("when two standard items", () => {
     const gildedRose = new Shop([
       new Item("foo", 0, 0),
       new Item("something", 1, 2),
@@ -392,7 +392,7 @@ describe("add mutilple items and run updateQuality", () => {
     expect(items[1].sellIn).toBe(0);
     expect(items[1].quality).toBe(1);
   });
-  xit("when two standard items and one Aged Brie item", () => {
+  it("when two standard items and one Aged Brie item", () => {
     const gildedRose = new Shop([
       new Item("foo", 0, 0),
       new Item("something", 1, 2),
@@ -411,7 +411,7 @@ describe("add mutilple items and run updateQuality", () => {
     expect(items[2].sellIn).toBe(0);
     expect(items[2].quality).toBe(1);
   });
-  xit("when one standard item and one Sulfuras, Hand of Ragnaros item", () => {
+  it("when one standard item and one Sulfuras, Hand of Ragnaros item", () => {
     const gildedRose = new Shop([
       new Item("foo", 0, 0),
       new Item("Sulfuras, Hand of Ragnaros", 1, 10),
@@ -426,7 +426,7 @@ describe("add mutilple items and run updateQuality", () => {
     expect(items[1].sellIn).toBe(1);
     expect(items[1].quality).toBe(10);
   });
-  xit("when one Sulfuras, Hand of Ragnaros and one TAFKAL80ETC concert item item", () => {
+  it("when one Sulfuras, Hand of Ragnaros and one TAFKAL80ETC concert item item", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", 1, 10),
       new Item("Backstage passes to a TAFKAL80ETC concert", 0, 0),
@@ -444,7 +444,7 @@ describe("add mutilple items and run updateQuality", () => {
 });
 
 describe("add items and run updateQuality twice", () => {
-  xit("for standard item", () => {
+  it("for standard item", () => {
     const gildedRose = new Shop([new Item("foo", 1, 2)]);
     gildedRose.updateQuality();
     const items = gildedRose.updateQuality();
@@ -452,7 +452,7 @@ describe("add items and run updateQuality twice", () => {
     expect(items[0].sellIn).toBe(-1);
     expect(items[0].quality).toBe(0);
   });
-  xit("for Aged Brie", () => {
+  it("for Aged Brie", () => {
     const gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
     gildedRose.updateQuality();
     const items = gildedRose.updateQuality();
@@ -460,7 +460,7 @@ describe("add items and run updateQuality twice", () => {
     expect(items[0].sellIn).toBe(-2);
     expect(items[0].quality).toBe(4);
   });
-  xit("for Sulfuras, Hand of Ragnaros", () => {
+  it("for Sulfuras, Hand of Ragnaros", () => {
     const gildedRose = new Shop([
       new Item("Sulfuras, Hand of Ragnaros", 1, 10),
     ]);
@@ -470,7 +470,7 @@ describe("add items and run updateQuality twice", () => {
     expect(items[0].sellIn).toBe(1);
     expect(items[0].quality).toBe(10);
   });
-  xit("for Backstage passes to a TAFKAL80ETC concert", () => {
+  it("for Backstage passes to a TAFKAL80ETC concert", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0),
     ]);
