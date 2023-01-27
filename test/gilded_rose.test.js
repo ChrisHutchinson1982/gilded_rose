@@ -329,7 +329,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(10);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 6", () => {
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 6", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 6, 50),
     ]);
@@ -338,7 +338,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(5);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 1", () => {
+  it("reduces items sellIn by 1 and does not change quality when 50 and sellIn is 1", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 1, 50),
     ]);
@@ -347,7 +347,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 and sellIn is 6", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 and sellIn is 6", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 6, 49),
     ]);
@@ -356,7 +356,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(5);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 when 49 and sellIn is 1", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 when 49 and sellIn is 1", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 1, 49),
     ]);
@@ -365,7 +365,7 @@ describe("add Backstage passes to a TAFKAL80ETC concert item and run updateQuali
     expect(items[0].sellIn).toBe(0);
     expect(items[0].quality).toBe(50);
   });
-  xit("reduces items sellIn by 1 and fixes quality at 50 when 48 and sellIn is 1", () => {
+  it("reduces items sellIn by 1 and fixes quality at 50 when 48 and sellIn is 1", () => {
     const gildedRose = new Shop([
       new Item("Backstage passes to a TAFKAL80ETC concert", 1, 48),
     ]);
