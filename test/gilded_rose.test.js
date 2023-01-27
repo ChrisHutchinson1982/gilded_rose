@@ -1,4 +1,4 @@
-const Shop = require("../src/gilded_rose");
+const Shop = require("../src/shop");
 const Item = require("../src/item");
 
 describe("updateQuality returns empty array", () => {
